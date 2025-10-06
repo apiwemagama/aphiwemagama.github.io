@@ -304,31 +304,33 @@ and open the template in the editor.
         <div id="contact" class="vh-100 bg-darkgunmetal">
             <div class="container h-100 pt-5">
                 <div class="row h-100 d-flex justify-content-center">
-                    <div class="col-lg-6 col-12 my-auto pb-5">
-                        <div class="row">
+                    <!-- Contact Info Column -->
+                    <div id="contact-info"
+                         class="col-lg-6 col-12 min-vh-100 d-flex flex-column justify-content-center pb-4 pb-lg-5 d-block">
+                        <div class="row w-100">
                             <div class="col-lg-12 col-sm-12">
                                 <h4 class="fw-bold">Connect</h4>
                                 <h6 class="fw-bold mb-0">Phone</h6>
                                 <p><a href="+27715599185">+27715599185</a></p>
-                                
                                 <h6 class="fw-bold mb-0">Calendly</h6>
                                 <p><a href="https://calendly.com/apiwemagama/30min" target="_blank">Schedule a meeting with Apiwe</a></p>
-                                
                                 <h6 class="fw-bold mb-0">Location</h6>
                                 <p>Our workplace</p>
                                 <p>844 Moremogolo Street Block M</br>Soshanguve</br>0152</p>
                                 <h6 class="fw-bold">Chat</h6>
                                 <a href="http://wa.me/0715599185" id="whatsapp" target="_blank"><i class="fab fa-whatsapp fa-2x align-middle"></i></a>
-                                <a href="http://www.twitter.com/aphiwemagama" id="twitter" target="_blank" ><i class="fab fa-twitter fa-2x align-middle"></i></a>
-                                <a href="http://www.linkedin.com/in/aphiwe-magama" id="linkedin" target="_blank" ><i class="fab fa-linkedin fa-2x align-middle"></i></a>
-                                <a href="https://www.youtube.com/channel/UCs14rR-BU2S4Vr4dnmM7PyA" id="youtube" target="_blank" ><i class="fa-brands fa-youtube fa-2x align-middle"></i></a>
-                                <a href="http://www.github.com/aphiwemagama" id="github" target="_blank" ><i class="fab fa-github fa-2x align-middle"></i></a>
-                                <a href="http://www.facebook.com/apmagama" id="facebook" target="_blank" ><i class="fab fa-facebook-square fa-2x align-middle"></i></a>
-                                <a href="https://stackoverflow.com/users/11426550/aphiwe" id="stackoverflow" target="_blank" ><i class="fa-brands fa-stack-overflow fa-2x align-middle"></i></a>
+                                <a href="http://www.twitter.com/aphiwemagama" id="twitter" target="_blank"><i class="fab fa-twitter fa-2x align-middle"></i></a>
+                                <a href="http://www.linkedin.com/in/aphiwe-magama" id="linkedin" target="_blank"><i class="fab fa-linkedin fa-2x align-middle"></i></a>
+                                <a href="https://www.youtube.com/channel/UCs14rR-BU2S4Vr4dnmM7PyA" id="youtube" target="_blank"><i class="fa-brands fa-youtube fa-2x align-middle"></i></a>
+                                <a href="http://www.github.com/aphiwemagama" id="github" target="_blank"><i class="fab fa-github fa-2x align-middle"></i></a>
+                                <a href="http://www.facebook.com/apmagama" id="facebook" target="_blank"><i class="fab fa-facebook-square fa-2x align-middle"></i></a>
+                                <a href="https://stackoverflow.com/users/11426550/aphiwe" id="stackoverflow" target="_blank"><i class="fa-brands fa-stack-overflow fa-2x align-middle"></i></a>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-6 my-auto pb-5">
+                    <!-- Form Column -->
+                    <div id="contact-form"
+                         class="col-lg-6 col-12 min-vh-100 d-flex flex-column justify-content-center pb-5 pb-lg-5 d-none d-lg-flex">
                         <div class="row">
                             <div class="col">
                                 <div class="mb-3">
@@ -354,24 +356,24 @@ and open the template in the editor.
                         <div class="row">
                             <div class="col">
                                 <div class="mb-3">
-                                    <label for="mesage" class="form-label">Message</label>
-                                    <textarea class="form-control" id="message" rows="3"placeholder="Message"></textarea>
+                                    <label for="message" class="form-label">Message</label>
+                                    <textarea class="form-control" id="message" rows="3" placeholder="Message"></textarea>
                                 </div>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-moonstone text-white">Submit</button>
+                        <div class="d-grid d-md-inline">
+                            <button type="submit" class="btn btn-moonstone text-white">Submit</button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    <div class="modal fade rounded-1" id="adModal" tabindex="-1" aria-labelledby="adModal" aria-hidden="true">
+        <div class="modal fade rounded-1" id="adModal" tabindex="-1" aria-labelledby="adModal" aria-hidden="true">
             <div class="modal-dialog bg-transparent modal-dialog-centered">
                 <div class="modal-content bg-transparent border-0 rounded-4 overflow-hidden shadow-lg">
-                    <!-- Modal Header with Close Button -->
                     <div class="modal-header position-absolute z-1 border-0 end-0 bg-transparent" data-bs-theme="dark">
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <!-- Modal Body -->
                     <div class="modal-body text-center p-0 bg-transparent">
                         <a href="https://go.fiverr.com/visit/?bta=1107667&nci=17044" target="_blank">
                             <img border="0" src="https://fiverr.ck-cdn.com/tn/serve/?cid=40301509" class="img-fluid">
@@ -387,5 +389,69 @@ and open the template in the editor.
         </footer>
         <script src="js/utils.js"></script>
         <script src="js/youtube-playlist-api.js"></script>
+        <script>
+(function() {
+  const contactSection = document.getElementById('contact');
+  const infoCol = document.getElementById('contact-info');
+  const formCol = document.getElementById('contact-form');
+  if (!contactSection || !infoCol || !formCol) return;
+
+  let lastY = window.scrollY;
+  let lastToggleDir = null;
+  let ticking = false;
+
+  function inSection() {
+    const rect = contactSection.getBoundingClientRect();
+    return rect.top < window.innerHeight && rect.bottom > 0;
+  }
+
+  function showInfo() {
+    if (window.innerWidth >= 992) return; // keep both on large screens
+    infoCol.classList.remove('d-none');
+    formCol.classList.add('d-none');
+  }
+
+  function showForm() {
+    if (window.innerWidth >= 992) return;
+    formCol.classList.remove('d-none');
+    infoCol.classList.add('d-none');
+  }
+
+  function onScroll() {
+    if (!inSection()) { ticking = false; return; }
+    const y = window.scrollY;
+    const dir = y > lastY ? 'down' : 'up';
+    if (dir !== lastToggleDir && Math.abs(y - lastY) > 15) {
+      if (dir === 'down') showForm(); else showInfo();
+      lastToggleDir = dir;
+    }
+    lastY = y;
+    ticking = false;
+  }
+
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      requestAnimationFrame(onScroll);
+      ticking = true;
+    }
+  }, { passive: true });
+
+  // Re-evaluate on resize (e.g., rotate device)
+  window.addEventListener('resize', () => {
+    if (window.innerWidth >= 992) {
+      // large: ensure both visible
+      infoCol.classList.remove('d-none');
+      formCol.classList.remove('d-none');
+    } else {
+      // small: start with info visible
+      showInfo();
+      lastToggleDir = null;
+    }
+  });
+
+  // Initial state for small screens
+  if (window.innerWidth < 992) showInfo();
+})();
+</script>
     </body>
 </html>
